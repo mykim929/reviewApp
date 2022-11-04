@@ -10,6 +10,9 @@ const Navigation = () => {
                 <li>
                     <Link to="/profile">My Profile</Link>
                 </li>
+                <li>
+                    <Link to="/write">new Review</Link>
+                </li>
             </ul>
         </nav>
     );

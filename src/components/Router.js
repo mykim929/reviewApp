@@ -3,6 +3,7 @@ import Home from "routes/Home";
 import Auth from "routes/Auth";
 import Profile from "routes/Profile";
 import Navigation from "./Navigation";
+import Write from "routes/Write";
 
 const AppRouter = ({ isLoggedIn }) => {
     return (
@@ -13,6 +14,7 @@ const AppRouter = ({ isLoggedIn }) => {
                     <>
                         <Route path="/" element={<Home />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route path="/write" element={<Write />} />
                     </>
                 ):(
                     <Route path="/" element={<Auth />} />
