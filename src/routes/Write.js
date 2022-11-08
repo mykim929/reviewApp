@@ -4,16 +4,16 @@ import { collection, addDoc } from "firebase/firestore";
 
 const Write = () => {
     const [title, setTitle] = useState("");
-    const [review, setReview] = useState([]);
-    const [translate, setTranslate] = useState([]);
     const onSubmit = async (event) => {
         event.preventDefault();
+        setInputItems(inputItems.filter(item => item.review || item.translate !== ''))
         await addDoc(collection(dbService, "reviewapp"), {
-            createdAt: new Date(),
+            createdAt: Date.now(),
             title: title,
-            review: review,
-            translate: translate
+            list: inputItems
         });
+        setTitle("");
+        setInputItems([{id:0, review:"", translate:""}]);
     };
     const onChange = (event) => {
         const {
@@ -25,10 +25,12 @@ const Write = () => {
     }
     const nextID = useRef(1);
     const [inputItems, setInputItems] = useState([{id:0, review:"", translate:""}]);
-    const addInput = () => {
+    const addInput = (event) => {
+        event.preventDefault();
         const input = {
             id: nextID.current,
-            txt: '',
+            review: '',
+            translate: ''
         }
         setInputItems([...inputItems, input]);
         nextID.current += 1;
@@ -47,16 +49,16 @@ const Write = () => {
         }
     }
     return (
-        <form>
+        <form onSubmit={addInput}>
             <input type="text" value={title} name="title" onChange={onChange} placeholder="제목" maxLength={1000} />
             {inputItems.map((item, index) => (
                 <div key={index}>
                     <input type="text" name="review" className={`list_${index}`} onChange={e => handleChange(e, index)} value={item.review} />
                     <input type="text" name="translate" className={`list_${index}`} onChange={e => handleChange(e, index)} value={item.translate} />
-                    <button onClick={addInput}> + </button>
+                    <button type="submit"> + </button>
                 </div>
             ))}
-            <input type="button" value="review" onClick={onSubmit} />
+            <input type="button" value="save" onClick={onSubmit} />
         </form>
     );
 }
