@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { dbService } from 'fbase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 
 const Details = () => {
-	const [list, setList] = useState([]);
+	const nextID = useRef(1);
 	const [newList, setNewList] = useState([]);
 	const [editing, setEditing] = useState(-1);
 	const { no } = useParams();
 	const getReview = async () => {
 		const docRef = doc(dbService, 'reviewapp', no);
 		const dbReviews = await getDoc(docRef);
-		setList(dbReviews.data().list);
 		setNewList(dbReviews.data().list);
 	};
 	const selectEditing = (id, e) => setEditing(id);
@@ -45,6 +44,20 @@ const Details = () => {
 		copiedItems[findIndex].translate = value;
 		setNewList(copiedItems);
 	};
+	const onAdd = (id) => {
+		nextID.current = Math.max(...newList.map((item) => item.id)) + 1;
+		const input = {
+			id: nextID.current,
+			review: '',
+			translate: '',
+		};
+		const emptyDelete = newList.filter((item) => item.review);
+		const findIndex = emptyDelete.findIndex((item) => item.id === id);
+		const tempList = emptyDelete.splice(findIndex + 1, 0, input);
+		setNewList([...new Set(emptyDelete.concat(tempList))]);
+		setEditing(nextID.current);
+		console.log(newList);
+	};
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		await updateDoc(doc(dbService, `reviewapp/${no}`), { list: newList });
@@ -55,7 +68,7 @@ const Details = () => {
 	}, []);
 	return (
 		<>
-			{list.map((list) => (
+			{newList.map((list) => (
 				<div>
 					{list.id === editing ? (
 						<form>
@@ -91,6 +104,9 @@ const Details = () => {
 							</button>
 							<button type='button' onClick={(e) => onDeleteClick(list.id, e)}>
 								삭제
+							</button>
+							<button type='button' onClick={() => onAdd(list.id)}>
+								+
 							</button>
 						</>
 					)}
