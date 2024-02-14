@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/reviewApp/static/js/main.142eca26.js",
+    "main.js": "/reviewApp/static/js/main.de0ef676.js",
     "index.html": "/reviewApp/index.html",
-    "main.142eca26.js.map": "/reviewApp/static/js/main.142eca26.js.map"
+    "main.de0ef676.js.map": "/reviewApp/static/js/main.de0ef676.js.map"
   },
   "entrypoints": [
-    "static/js/main.142eca26.js"
+    "static/js/main.de0ef676.js"
   ]
 }
