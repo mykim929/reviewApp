@@ -141,12 +141,12 @@ const Reviews = () => {
 								{showEnglish ? (
 									<>
 										<span>{list.review}</span>
-										<span>{resultList[index]}</span>
+										<span dangerouslySetInnerHTML={{ __html: resultList[index] }}></span>
 										<span>{check[index] ? '맞음' : '틀림'}</span>
 									</>
 								) : (
 									<>
-										<span>{resultList[index]}</span>
+										<span dangerouslySetInnerHTML={{ __html: resultList[index] }}></span>
 										<span>{list.translate}</span>
 										<span>{check[index] ? '맞음' : '틀림'}</span>
 									</>
