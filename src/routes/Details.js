@@ -67,52 +67,111 @@ const Details = () => {
 		getReview();
 	}, []);
 	return (
-		<>
-			{newList.map((list) => (
-				<div>
-					{list.id === editing ? (
-						<form>
-							<input
-								type='text'
-								value={newList[newList.findIndex((item) => item.id === list.id)].review}
-								onChange={(e) => onChangeReview(list.id, e)}
-							/>
-							<input
-								type='text'
-								value={newList[newList.findIndex((item) => item.id === list.id)].translate}
-								onChange={(e) => onChangeTranslate(list.id, e)}
-							/>
-							<button type='button' onClick={onSubmit}>
-								저장
-							</button>
-							<button type='button' onClick={onCancle}>
-								취소
-							</button>
-						</form>
-					) : (
-						<>
-							<span>{list.review}</span>
-							{list.translate ? (
-								<span>{list.translate}</span>
+		<div class='table-responsive'>
+			<table class='table table-hover table-rounded table-striped gy-5 gs-1'>
+				<thead>
+					<tr class='fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200'>
+						<th>review</th>
+						<th>translate</th>
+						<th className='w-100px'></th>
+					</tr>
+				</thead>
+				<tbody>
+					{newList.map((list) => (
+						<tr>
+							{list.id === editing ? (
+								<>
+									<td>
+										<input
+											type='text'
+											className='form-control h-30px'
+											value={newList[newList.findIndex((item) => item.id === list.id)].review}
+											onChange={(e) => onChangeReview(list.id, e)}
+										/>
+									</td>
+									<td>
+										<input
+											type='text'
+											className='form-control h-30px'
+											value={newList[newList.findIndex((item) => item.id === list.id)].translate}
+											onChange={(e) => onChangeTranslate(list.id, e)}
+										/>
+									</td>
+									<td>
+										<button
+											type='button'
+											className='btn btn-sm btn-icon btn-outline btn-outline-success btn-active-light-success w-25px h-25px me-1'
+											onClick={onSubmit}
+										>
+											<i className='ki-duotone ki-tablet-text-down fs-3'>
+												<span class='path1'></span>
+												<span class='path2'></span>
+												<span class='path3'></span>
+												<span class='path4'></span>
+											</i>
+										</button>
+										<button
+											type='button'
+											className='btn btn-sm btn-icon btn-outline btn-outline-danger btn-active-light-danger w-25px h-25px'
+											onClick={onCancle}
+										>
+											<i class='ki-duotone ki-cross fs-3'>
+												<span class='path1'></span>
+												<span class='path2'></span>
+											</i>
+										</button>
+									</td>
+								</>
 							) : (
 								<>
-									<input type='text' placeholder='해석을 입력하세요' />
+									<td>{list.review}</td>
+
+									{list.translate ? (
+										<td>{list.translate}</td>
+									) : (
+										<td>
+											<input type='text' placeholder='해석을 입력하세요' />
+										</td>
+									)}
+									<td>
+										<button
+											type='button'
+											className='btn btn-sm btn-icon btn-outline btn-outline-primary btn-active-light-primary w-25px h-25px me-1'
+											onClick={(e) => selectEditing(list.id, e)}
+										>
+											<i class='ki-duotone ki-pencil'>
+												<span class='path1'></span>
+												<span class='path2'></span>
+											</i>
+										</button>
+										<button
+											type='button'
+											className='btn btn-sm btn-icon btn-outline btn-outline-success btn-active-light-success w-25px h-25px me-1'
+											onClick={() => onAdd(list.id)}
+										>
+											<i className='ki-duotone ki-plus'></i>
+										</button>
+										<button
+											type='button'
+											className='btn btn-sm btn-icon btn-outline btn-outline-danger btn-active-light-danger w-25px h-25px me-1'
+											onClick={(e) => onDeleteClick(list.id, e)}
+										>
+											<i class='ki-duotone ki-trash'>
+												<span class='path1'></span>
+												<span class='path2'></span>
+												<span class='path3'></span>
+												<span class='path4'></span>
+												<span class='path5'></span>
+											</i>
+										</button>
+									</td>
 								</>
 							)}
-							<button type='button' onClick={(e) => selectEditing(list.id, e)}>
-								편집
-							</button>
-							<button type='button' onClick={(e) => onDeleteClick(list.id, e)}>
-								삭제
-							</button>
-							<button type='button' onClick={() => onAdd(list.id)}>
-								+
-							</button>
-						</>
-					)}
-				</div>
-			))}
-		</>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 	);
 };
 
