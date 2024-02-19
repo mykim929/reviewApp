@@ -37,9 +37,11 @@ const Home = () => {
 										to={`/Details/${review.id}`}
 										className='text-gray-800 text-hover-primary fs-6 fw-bold'
 									>
-										{review.title} :{' '}
-										{dayjs(new Date(review.createdAt)).format('YYYY-MM-DD A HH:mm')}
+										{review.title}
 									</Link>
+									<span class='text-muted fw-semibold d-block fs-7'>
+										{dayjs(new Date(review.createdAt)).format('YYYY-MM-DD A HH:mm')}
+									</span>
 								</div>
 								<button
 									type='button'

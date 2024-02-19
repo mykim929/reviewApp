@@ -62,38 +62,73 @@ const Write = () => {
 	}, [inputItems]);
 	return (
 		<form onSubmit={addInput}>
-			<input
-				type='text'
-				value={title}
-				name='title'
-				onChange={onChange}
-				placeholder='제목'
-				maxLength={1000}
-			/>
+			<div className='form-floating mb-7'>
+				<input
+					type='text'
+					className='form-control form-control-solid'
+					id='floatingTitle'
+					value={title}
+					name='title'
+					onChange={onChange}
+					placeholder='제목'
+					maxLength={1000}
+				/>
+				<label htmlFor='floatingTitle'>제목</label>
+			</div>
 			{inputItems.map((item, index) => (
-				<div key={index}>
-					<input
-						type='text'
-						name='review'
-						className={`list_${index}`}
-						onChange={(e) => handleChange(e, index)}
-						value={item.review}
-					/>
-					<input
-						type='text'
-						name='translate'
-						className={`list_${index}`}
-						onChange={(e) => handleChange(e, index)}
-						value={item.translate}
-					/>
-					<button type='submit'> + </button>
-					<button type='button' onClick={(e) => deleteInput(e, item.id)}>
-						{' '}
-						-{' '}
-					</button>
+				<div key={index} className='d-flex flex-stack'>
+					<div className='d-flex align-items-center flex-row-fluid flex-wrap mb-2'>
+						<div className='d-flex flex-grow-1 me-4'>
+							<div className='form-floating col-sm-6 me-2'>
+								<input
+									type='text'
+									name='review'
+									className={`form-control form-control-solid list_${index}`}
+									onChange={(e) => handleChange(e, index)}
+									value={item.review}
+									id={`floatingReview${index}`}
+									placeholder='Review'
+								/>
+								<label htmlFor={`floatingReview${index}`}>Review</label>
+							</div>
+							<div className='form-floating col-sm-6 me-2'>
+								<input
+									type='text'
+									name='translate'
+									className={`form-control form-control-solid list_${index}`}
+									onChange={(e) => handleChange(e, index)}
+									value={item.translate}
+									id={`floatingTranslate${index}`}
+									placeholder='Translate'
+								/>
+								<label htmlFor={`floatingTranslate${index}`}>Translate</label>
+							</div>
+						</div>
+						<button
+							type='submit'
+							className='btn btn-sm btn-icon btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary w-30px h-30px me-2'
+						>
+							<i className='ki-duotone ki-plus'></i>
+						</button>
+						<button
+							type='button'
+							className='btn btn-sm btn-icon btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger w-30px h-30px'
+							onClick={(e) => deleteInput(e, item.id)}
+						>
+							<i className='ki-duotone ki-minus'></i>
+						</button>
+					</div>
 				</div>
 			))}
-			<input type='button' value='save' onClick={onSubmit} />
+			<button
+				type='button'
+				value='save'
+				onClick={onSubmit}
+				className='btn btn-success w-100 w-sm-100px fw-bold mt-10'
+			>
+				<i className='bi bi-save me-1'></i>
+				Save
+			</button>
 		</form>
 	);
 };
