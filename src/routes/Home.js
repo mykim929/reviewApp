@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { dbService } from 'fbase';
 import { collection, doc, getDocs, deleteDoc } from 'firebase/firestore';
 import dayjs from 'dayjs';
+import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -14,13 +15,25 @@ const Home = () => {
 			setReviews((prev) => [reviewObject, ...prev]);
 		});
 	};
-	const onDeleteClick = async (id, event) => {
-		const ok = window.confirm('삭제하시겠습니까?');
-		if (ok) {
-			await deleteDoc(doc(dbService, `reviewapp/${id}`));
-			setReviews([]);
-			getReviews();
-		}
+	const onDeleteClick = (id, event) => {
+		Swal.fire({
+			html: `<strong class='fs-3'>삭제하시겠습니까?</strong>`,
+			icon: 'error',
+			buttonsStyling: false,
+			showCancelButton: true,
+			confirmButtonText: '네',
+			cancelButtonText: '아니요',
+			customClass: {
+				confirmButton: 'btn btn-primary',
+				cancelButton: 'btn btn-danger',
+			},
+		}).then((result) => {
+			if (result.isConfirmed) {
+				deleteDoc(doc(dbService, `reviewapp/${id}`));
+				setReviews([]);
+				getReviews();
+			}
+		});
 	};
 	useEffect(() => {
 		getReviews();

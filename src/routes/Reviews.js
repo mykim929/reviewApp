@@ -140,13 +140,13 @@ const Reviews = () => {
 					<table className='table table-hover table-rounded table-striped gy-5 gs-1'>
 						<thead>
 							<tr className='fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200'>
-								<th>review</th>
-								<th>answer</th>
+								<th className='text-center'>review</th>
+								<th className='text-center'>answer</th>
 								<>
 									{result ? (
 										<>
-											<th>translate</th>
-											<th>result</th>
+											<th className='text-center'>translate</th>
+											<th className='text-center'>result</th>
 										</>
 									) : (
 										<></>
@@ -163,15 +163,12 @@ const Reviews = () => {
 												<tr>
 													<td>{list.review}</td>
 													{resultList[index] === '<s class="text-danger"></s>' ? (
-														<td> - </td>
+														<td className='text-center'> - </td>
 													) : (
-														<td
-															className='text-center'
-															dangerouslySetInnerHTML={{ __html: resultList[index] }}
-														></td>
+														<td dangerouslySetInnerHTML={{ __html: resultList[index] }}></td>
 													)}
 													<td>{list.translate}</td>
-													<td>
+													<td className='text-center'>
 														{check[index] ? (
 															<>
 																<i className='ki-duotone ki-check-circle text-success fs-1'>
@@ -198,7 +195,7 @@ const Reviews = () => {
 													)}
 													<td>{list.translate}</td>
 													<td>{list.review}</td>
-													<td>
+													<td className='text-center'>
 														{check[index] ? (
 															<>
 																<i className='ki-duotone ki-check-circle text-success fs-1'>

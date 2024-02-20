@@ -26,6 +26,11 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>React App</title>
+
+  <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+  <script src="%PUBLIC_URL%/assets/plugins/global/plugins.bundle.js"></script>
+  <script src="%PUBLIC_URL%/assets/js/scripts.bundle.js"></script>
+  <!--end::Global Javascript Bundle-->
 </head>
 
 <body data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true"
@@ -46,10 +51,6 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
-  <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-  <script src="%PUBLIC_URL%/assets/plugins/global/plugins.bundle.js"></script>
-  <script src="%PUBLIC_URL%/assets/js/scripts.bundle.js"></script>
-  <!--end::Global Javascript Bundle-->
 </body>
 
 </html>
