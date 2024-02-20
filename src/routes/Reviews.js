@@ -61,7 +61,7 @@ const Reviews = () => {
 		let tempTxt = [...getNewList];
 		let changeCondition = true;
 		let next = 0;
-		const startDel = '<s>';
+		const startDel = '<s class="text-danger">';
 		const endDel = '</s>';
 		for (const i in wrongList) {
 			if (!wrongList[i]) {
@@ -127,67 +127,177 @@ const Reviews = () => {
 			{result ? (
 				<></>
 			) : (
-				<>
-					<input type='checkbox' id='translate' onClick={onCheck} />
-					<label htmlFor='translate'>번역 복습 하기</label>
-				</>
+				<div className='form-check form-switch form-check-custom form-check-solid'>
+					<input className='form-check-input' type='checkbox' id='translate' onClick={onCheck} />
+					<label className='form-check-label' htmlFor='translate'>
+						번역 복습 하기
+					</label>
+				</div>
 			)}
 
 			<form onSubmit={onSubmit}>
-				{list.map((list, index) => (
-					<div>
-						{result ? (
-							<>
-								{showEnglish ? (
-									<>
-										<span>{list.review}</span>
-										<span dangerouslySetInnerHTML={{ __html: resultList[index] }}></span>
-										<span>{check[index] ? '맞음' : '틀림'}</span>
-									</>
-								) : (
-									<>
-										<span dangerouslySetInnerHTML={{ __html: resultList[index] }}></span>
-										<span>{list.translate}</span>
-										<span>{check[index] ? '맞음' : '틀림'}</span>
-									</>
-								)}
-							</>
-						) : (
-							<>
-								{showEnglish ? (
-									<>
-										<span>{list.review}</span>
-										<input
-											type='text'
-											name='translate'
-											placeholder='해석을 입력하세요'
-											onChange={(e) => handleChange(list.id, e)}
-										/>
-									</>
-								) : (
-									<>
-										<input
-											type='text'
-											name='review'
-											placeholder='영어를 입력하세요'
-											onChange={(e) => handleChange(list.id, e)}
-										/>
-										<span>{list.translate}</span>
-									</>
-								)}
-							</>
-						)}
-					</div>
-				))}
-				<input type='submit' value='결과보기' />
-				<button type='button' onClick={onReset}>
+				<div className='table-responsive'>
+					<table className='table table-hover table-rounded table-striped gy-5 gs-1'>
+						<thead>
+							<tr className='fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200'>
+								<th>review</th>
+								<th>answer</th>
+								<>
+									{result ? (
+										<>
+											<th>translate</th>
+											<th>result</th>
+										</>
+									) : (
+										<></>
+									)}
+								</>
+							</tr>
+						</thead>
+						<tbody>
+							{list.map((list, index) => (
+								<>
+									{result ? (
+										<>
+											{showEnglish ? (
+												<tr>
+													<td>{list.review}</td>
+													{resultList[index] === '<s class="text-danger"></s>' ? (
+														<td> - </td>
+													) : (
+														<td
+															className='text-center'
+															dangerouslySetInnerHTML={{ __html: resultList[index] }}
+														></td>
+													)}
+													<td>{list.translate}</td>
+													<td>
+														{check[index] ? (
+															<>
+																<i className='ki-duotone ki-check-circle text-success fs-1'>
+																	<span className='path1'></span>
+																	<span className='path2'></span>
+																</i>
+															</>
+														) : (
+															<>
+																<i className='ki-duotone ki-cross-circle text-danger fs-1'>
+																	<span className='path1'></span>
+																	<span className='path2'></span>
+																</i>
+															</>
+														)}
+													</td>
+												</tr>
+											) : (
+												<tr>
+													{resultList[index] === '<s class="text-danger"></s>' ? (
+														<td className='text-center'> - </td>
+													) : (
+														<td dangerouslySetInnerHTML={{ __html: resultList[index] }}></td>
+													)}
+													<td>{list.translate}</td>
+													<td>{list.review}</td>
+													<td>
+														{check[index] ? (
+															<>
+																<i className='ki-duotone ki-check-circle text-success fs-1'>
+																	<span className='path1'></span>
+																	<span className='path2'></span>
+																</i>
+															</>
+														) : (
+															<>
+																<i className='ki-duotone ki-cross-circle text-danger fs-1'>
+																	<span className='path1'></span>
+																	<span className='path2'></span>
+																</i>
+															</>
+														)}
+													</td>
+												</tr>
+											)}
+										</>
+									) : (
+										<>
+											{showEnglish ? (
+												<tr>
+													<td>{list.review}</td>
+													<td>
+														<input
+															type='text'
+															className='form-control h-30px'
+															name='translate'
+															placeholder='해석을 입력하세요'
+															onChange={(e) => handleChange(list.id, e)}
+														/>
+													</td>
+												</tr>
+											) : (
+												<tr>
+													<td>
+														<input
+															type='text'
+															className='form-control h-30px'
+															name='review'
+															placeholder='영어를 입력하세요'
+															onChange={(e) => handleChange(list.id, e)}
+														/>
+													</td>
+													<td>{list.translate}</td>
+												</tr>
+											)}
+										</>
+									)}
+								</>
+							))}
+						</tbody>
+					</table>
+				</div>
+				<button type='submit' className='btn btn-success w-100 w-sm-150px fw-bold mt-4 me-2'>
+					<i className='ki-duotone ki-tablet-ok fs-2'>
+						<span className='path1'></span>
+						<span className='path2'></span>
+						<span className='path3'></span>
+					</i>
+					결과보기
+				</button>
+				<button
+					type='button'
+					className='btn btn-secondary w-100 w-sm-150px fw-bold mt-4 '
+					onClick={onReset}
+				>
+					<i className='ki-duotone ki-arrows-circle fs-2'>
+						<span className='path1'></span>
+						<span className='path2'></span>
+					</i>
 					다시하기
 				</button>
 				{result && (
-					<span>
-						정답율 :
-						{((check.filter((value) => value === true).length / check.length) * 100).toFixed(2)}%
-					</span>
+					<div className='d-flex align-items-center flex-column mt-3 w-100'>
+						<div className='d-flex justify-content-between w-100 mt-auto mb-2'>
+							<span className='fw-bolder fs-6 text-dark'>정답율</span>
+							<span className='fw-bold fs-6 text-gray-400'>
+								{((check.filter((value) => value === true).length / check.length) * 100).toFixed(2)}
+								%
+							</span>
+						</div>
+						<div className='h-8px mx-3 w-100 bg-light-success rounded'>
+							<div
+								className='bg-success rounded h-8px'
+								role='progressbar'
+								style={{
+									width:
+										((check.filter((value) => value === true).length / check.length) * 100).toFixed(
+											2
+										) + '%',
+								}}
+								aria-valuenow='50'
+								aria-valuemin='0'
+								aria-valuemax='100'
+							></div>
+						</div>
+					</div>
 				)}
 			</form>
 		</>
