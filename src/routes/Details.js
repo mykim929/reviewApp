@@ -85,6 +85,7 @@ const Details = () => {
 										<input
 											type='text'
 											className='form-control h-30px'
+											autoComplete='off'
 											value={newList[newList.findIndex((item) => item.id === list.id)].review}
 											onChange={(e) => onChangeReview(list.id, e)}
 										/>
@@ -93,6 +94,7 @@ const Details = () => {
 										<input
 											type='text'
 											className='form-control h-30px'
+											autoComplete='off'
 											value={newList[newList.findIndex((item) => item.id === list.id)].translate}
 											onChange={(e) => onChangeTranslate(list.id, e)}
 										/>
@@ -130,7 +132,7 @@ const Details = () => {
 										<td>{list.translate}</td>
 									) : (
 										<td>
-											<input type='text' placeholder='해석을 입력하세요' />
+											<input type='text' autoComplete='off' placeholder='해석을 입력하세요' />
 										</td>
 									)}
 									<td>

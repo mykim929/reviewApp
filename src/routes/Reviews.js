@@ -225,6 +225,7 @@ const Reviews = () => {
 															type='text'
 															className='form-control h-30px'
 															name='translate'
+															autoComplete='off'
 															placeholder='해석을 입력하세요'
 															onChange={(e) => handleChange(list.id, e)}
 														/>
@@ -237,6 +238,7 @@ const Reviews = () => {
 															type='text'
 															className='form-control h-30px'
 															name='review'
+															autoComplete='off'
 															placeholder='영어를 입력하세요'
 															onChange={(e) => handleChange(list.id, e)}
 														/>

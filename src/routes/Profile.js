@@ -22,7 +22,7 @@ const Profile = ({ isLoggedIn }) => {
 							class='form-control form-control-lg form-control-solid'
 							type='email'
 							name='email'
-							autocomplete='off'
+							autoComplete='off'
 							disabled
 							value={isLoggedIn.email}
 						/>

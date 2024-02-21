@@ -36,15 +36,15 @@ const Auth = () => {
 		<div className='d-flex flex-column flex-root'>
 			<div className='d-flex flex-center flex-column flex-column-fluid'>
 				<div className='w-lg-500px p-10 p-lg-15 mx-auto'>
-					<div class='mb-10 text-center'>
+					<div className='mb-10 text-center'>
 						{newAccount ? (
 							<>
-								<h1 class='text-dark mb-3'>Sign In to Review App</h1>
-								<div class='text-gray-400 fw-semibold fs-4'>
+								<h1 className='text-dark mb-3'>Sign In to Review App</h1>
+								<div className='text-gray-400 fw-semibold fs-4'>
 									Already have an account
 									<button
 										type='button'
-										class='btn btn-link btn-color-success btn-active-color-success fw-bold ms-5'
+										className='btn btn-link btn-color-success btn-active-color-success fw-bold ms-5'
 										onClick={toggleAccount}
 									>
 										Sign in here
@@ -53,12 +53,12 @@ const Auth = () => {
 							</>
 						) : (
 							<>
-								<h1 class='text-dark mb-3'>Create an Account</h1>
-								<div class='text-gray-400 fw-semibold fs-4'>
+								<h1 className='text-dark mb-3'>Create an Account</h1>
+								<div className='text-gray-400 fw-semibold fs-4'>
 									New here?
 									<button
 										type='button'
-										class='btn btn-link btn-color-success btn-active-color-success fw-bold ms-5'
+										className='btn btn-link btn-color-success btn-active-color-success fw-bold ms-5'
 										onClick={toggleAccount}
 									>
 										Create an Account
@@ -68,43 +68,43 @@ const Auth = () => {
 						)}
 					</div>
 					<form onSubmit={onSubmit}>
-						<div class='fv-row mb-10 fv-plugins-icon-container'>
-							<label class='form-label fs-6 fw-bold text-dark'>Email</label>
+						<div className='fv-row mb-10 fv-plugins-icon-container'>
+							<label className='form-label fs-6 fw-bold text-dark'>Email</label>
 							<input
-								class='form-control form-control-lg form-control-solid'
+								className='form-control form-control-lg form-control-solid'
 								type='email'
 								name='email'
-								autocomplete='off'
+								autoComplete='off'
 								value={email}
 								onChange={onChange}
 								required
 							/>
-							<div class='fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback'></div>
+							<div className='fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback'></div>
 						</div>
-						<div class='fv-row mb-10 fv-plugins-icon-container'>
-							<div class='d-flex flex-stack mb-2'>
-								<label class='form-label fw-bold text-dark fs-6 mb-0'>Password</label>
+						<div className='fv-row mb-10 fv-plugins-icon-container'>
+							<div className='d-flex flex-stack mb-2'>
+								<label className='form-label fw-bold text-dark fs-6 mb-0'>Password</label>
 							</div>
 							<input
-								class='form-control form-control-lg form-control-solid'
+								className='form-control form-control-lg form-control-solid'
 								type='password'
 								name='password'
-								autocomplete='off'
+								autoComplete='off'
 								value={password}
 								onChange={onChange}
 								required
 							/>
-							<div class='fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback'></div>
+							<div className='fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback'></div>
 						</div>
 						{error && (
-							<div class='alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row w-100 p-5 mb-20'>
-								<i class='ki-duotone ki-message-text-2 fs-2hx text-danger me-4 mb-5 mb-sm-0'>
-									<span class='path1'></span>
-									<span class='path2'></span>
-									<span class='path3'></span>
+							<div className='alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row w-100 p-5 mb-20'>
+								<i className='ki-duotone ki-message-text-2 fs-2hx text-danger me-4 mb-5 mb-sm-0'>
+									<span className='path1'></span>
+									<span className='path2'></span>
+									<span className='path3'></span>
 								</i>
-								<div class='d-flex flex-column pe-0 pe-sm-10'>
-									<h4 class='fw-bold'>Error</h4>
+								<div className='d-flex flex-column pe-0 pe-sm-10'>
+									<h4 className='fw-bold'>Error</h4>
 									<span>{error}</span>
 								</div>
 							</div>

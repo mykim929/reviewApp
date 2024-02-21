@@ -1,6 +1,10 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Navigation = () => {
+	useEffect(() => {
+		window.KTComponents.init();
+	}, []);
 	return (
 		<div
 			id='kt_app_sidebar'
@@ -30,7 +34,7 @@ const Navigation = () => {
 					className='flex-column-fluid menu menu-sub-indention menu-column menu-rounded menu-active-bg mb-7'
 				>
 					<nav data-kt-menu-trigger='click' className='menu-item here show menu-accordion'>
-						<Link to='/' className='menu-link'>
+						<NavLink to='/' className='menu-link'>
 							<span className='menu-icon'>
 								<i className='ki-duotone ki-element-11 fs-1'>
 									<span className='path1'></span>
@@ -40,8 +44,8 @@ const Navigation = () => {
 								</i>
 							</span>
 							<span className='menu-title'>Home</span>
-						</Link>
-						<Link to='/profile' className='menu-link'>
+						</NavLink>
+						<NavLink to='/profile' className='menu-link'>
 							<span className='menu-icon'>
 								<i className='ki-duotone ki-some-files fs-1'>
 									<span className='path1'></span>
@@ -49,8 +53,8 @@ const Navigation = () => {
 								</i>
 							</span>
 							<span className='menu-title'>My Profile</span>
-						</Link>
-						<Link to='/write' className='menu-link'>
+						</NavLink>
+						<NavLink to='/write' className='menu-link'>
 							<span className='menu-icon'>
 								<i className='ki-duotone ki-chart-line-star fs-1'>
 									<span className='path1'></span>
@@ -59,7 +63,7 @@ const Navigation = () => {
 								</i>
 							</span>
 							<span className='menu-title'>new Review</span>
-						</Link>
+						</NavLink>
 					</nav>
 				</div>
 			</div>

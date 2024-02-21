@@ -69,6 +69,7 @@ const Write = () => {
 					id='floatingTitle'
 					value={title}
 					name='title'
+					autoComplete='off'
 					onChange={onChange}
 					placeholder='제목'
 					maxLength={1000}
@@ -84,6 +85,7 @@ const Write = () => {
 									type='text'
 									name='review'
 									className={`form-control form-control-solid list_${index}`}
+									autoComplete='off'
 									onChange={(e) => handleChange(e, index)}
 									value={item.review}
 									id={`floatingReview${index}`}
@@ -96,6 +98,7 @@ const Write = () => {
 									type='text'
 									name='translate'
 									className={`form-control form-control-solid list_${index}`}
+									autoComplete='off'
 									onChange={(e) => handleChange(e, index)}
 									value={item.translate}
 									id={`floatingTranslate${index}`}
