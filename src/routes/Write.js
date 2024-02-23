@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { dbService } from 'fbase';
 import { collection, addDoc } from 'firebase/firestore';
 
-const Write = () => {
+const Write = ({ isLoggedIn }) => {
 	const nextID = useRef(1);
 	const didMount = useRef(false);
 	const [title, setTitle] = useState('');
@@ -52,6 +52,7 @@ const Write = () => {
 		if (didMount.current) {
 			addDoc(collection(dbService, 'reviewapp'), {
 				createdAt: Date.now(),
+				creatorId: isLoggedIn.uid,
 				title: title,
 				list: inputItems,
 			});

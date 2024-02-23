@@ -14,14 +14,14 @@ const AppRouter = ({ isLoggedIn }) => {
 			<Routes>
 				{isLoggedIn ? (
 					<>
-						<Route path='/' element={<Home />} />
+						<Route path='/' element={<Home isLoggedIn={isLoggedIn} />} />
 						<Route path='/profile' element={<Profile isLoggedIn={isLoggedIn} />} />
-						<Route path='/write' element={<Write />} />
+						<Route path='/write' element={<Write isLoggedIn={isLoggedIn} />} />
 						<Route path='/Details/:no' element={<Details />} />
 						<Route path='/Reviews/:no' element={<Reviews />} />
 					</>
 				) : (
-					<Route path='/' element={<Auth />} />
+					<Route path='/' element={<Auth isLoggedIn={isLoggedIn} />} />
 				)}
 			</Routes>
 		</Router>
