@@ -45,7 +45,6 @@ const Toolbar = ({ isLoggedIn }) => {
 	const currentPath = useCurrentPath();
 	useEffect(() => {
 		getReviews();
-		console.log(breadcrumbs);
 	}, []);
 	return (
 		<div id='kt_app_toolbar' className='app-toolbar  pt-5'>
