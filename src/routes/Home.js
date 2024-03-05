@@ -10,12 +10,14 @@ const Home = ({ isLoggedIn }) => {
 	const getReviews = async () => {
 		const docRef = collection(dbService, 'reviewapp');
 		const dbReviews = await getDocs(docRef);
+		let tempList = [];
 		dbReviews.forEach((doc) => {
 			if (doc.data().creatorId === isLoggedIn.uid) {
 				const reviewObject = { ...doc.data(), id: doc.id };
-				setReviews((prev) => [reviewObject, ...prev]);
+				tempList.push(reviewObject);
 			}
 		});
+		setReviews(tempList);
 	};
 	const onDeleteClick = (id, event) => {
 		Swal.fire({

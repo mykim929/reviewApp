@@ -12,7 +12,7 @@ const Auth = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [nickname, setNickname] = useState('');
-	const [newAccount, setNewAccount] = useState(true);
+	const [newAccount, setNewAccount] = useState(false);
 	const [attachment, setAttachment] = useState('none');
 	const [error, setError] = useState('');
 	const onChange = async (event) => {
@@ -73,9 +73,6 @@ const Auth = () => {
 	const onClearAttachment = () => setAttachment('none');
 	const toggleAccount = () => setNewAccount((prev) => !prev);
 
-	useEffect(() => {
-		// window.KTComponents.init();
-	}, []);
 	return (
 		<div className='d-flex flex-column flex-root'>
 			<div className='d-flex flex-center flex-column flex-column-fluid'>
@@ -206,21 +203,23 @@ const Auth = () => {
 							/>
 							<div className='fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback'></div>
 						</div>
-						<div className='fv-row mb-10 fv-plugins-icon-container'>
-							<div className='d-flex flex-stack mb-2'>
-								<label className='form-label fw-bold text-dark fs-6 mb-0'>Nickname</label>
+						{newAccount && (
+							<div className='fv-row mb-10 fv-plugins-icon-container'>
+								<div className='d-flex flex-stack mb-2'>
+									<label className='form-label fw-bold text-dark fs-6 mb-0'>Nickname</label>
+								</div>
+								<input
+									className='form-control form-control-lg form-control-solid'
+									type='text'
+									name='nickname'
+									autoComplete='off'
+									value={nickname}
+									onChange={onChange}
+									required
+								/>
+								<div className='fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback'></div>
 							</div>
-							<input
-								className='form-control form-control-lg form-control-solid'
-								type='text'
-								name='nickname'
-								autoComplete='off'
-								value={nickname}
-								onChange={onChange}
-								required
-							/>
-							<div className='fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback'></div>
-						</div>
+						)}
 						{error && (
 							<div className='alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row w-100 p-5 mb-20'>
 								<i className='ki-duotone ki-message-text-2 fs-2hx text-danger me-4 mb-5 mb-sm-0'>

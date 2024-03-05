@@ -58,15 +58,11 @@ function App() {
 			<div className='app-wrapper flex-column flex-row-fluid'>
 				<div className='app-main flex-column flex-row-fluid'>
 					<div className='d-flex flex-column flex-column-fluid'>
-						<div className='app-content flex-column-fluid'>
-							<div className='app-container container-fluid'>
-								{init ? <AppRouter isLoggedIn={isLoggedIn} /> : 'initializing ... '}
-							</div>
-						</div>
+						{init ? <AppRouter isLoggedIn={isLoggedIn} /> : 'initializing ... '}
 					</div>
 				</div>
 			</div>
-			<footer>&copy; {new Date().getFullYear()} Review App</footer>
+			{/* <footer>&copy; {new Date().getFullYear()} Review App</footer> */}
 		</div>
 	);
 }
