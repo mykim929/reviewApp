@@ -49,8 +49,16 @@ const Header = ({ isLoggedIn }) => {
 				</div>
 				{isLoggedIn && (
 					<>
-						<div class='d-flex align-items-center flex-grow-1 justify-content-end me-2'>
-							<div class='symbol symbol-40px symbol-lg-50px me-5'>
+						<div
+							id='kt_header_user_menu_toggle'
+							className='app-navbar-item d-flex align-items-center flex-grow-1 justify-content-end me-2'
+						>
+							<div
+								className='cursor-pointer symbol symbol-40px symbol-lg-50px me-2'
+								data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+								data-kt-menu-attach='parent'
+								data-kt-menu-placement='bottom-end'
+							>
 								{isLoggedIn.photoURL === null ? (
 									<img
 										src={`${process.env.PUBLIC_URL}/assets/media/svg/avatars/blank.svg`}
@@ -60,86 +68,97 @@ const Header = ({ isLoggedIn }) => {
 									<img src={isLoggedIn.photoURL} alt='user' />
 								)}
 							</div>
-							<div class='d-flex flex-column'>
-								{isLoggedIn.displayName !== null && (
-									<div class='fw-bold d-flex align-items-center fs-5'>{isLoggedIn.displayName}</div>
-								)}
-								<div class='fw-bold text-muted fs-7'>{isLoggedIn.email}</div>
+							<div
+								className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-200px'
+								data-kt-menu='true'
+							>
+								<div className='menu-item px-3'>
+									<div className='menu-content d-flex align-items-center px-3'>
+										<div className='d-flex flex-column'>
+											{isLoggedIn.displayName !== null && (
+												<div className='fw-bold d-flex align-items-center fs-5'>
+													{isLoggedIn.displayName}
+												</div>
+											)}
+											<div className='fw-bold text-muted fs-7 text-break'>{isLoggedIn.email}</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class='d-flex align-items-center me-5'>
+						<div className='d-flex align-items-center me-5'>
 							<button
-								class='btn btn-icon btn-icon-primary ms-1'
+								className='btn btn-icon btn-icon-primary ms-1'
 								data-kt-menu-trigger="{default:'click', lg: 'hover'}"
 								data-kt-menu-attach='parent'
 								data-kt-menu-placement='bottom-end'
 							>
-								<i class='ki-duotone ki-night-day theme-light-show fs-1'>
-									<span class='path1'></span>
-									<span class='path2'></span>
-									<span class='path3'></span>
-									<span class='path4'></span>
-									<span class='path5'></span>
-									<span class='path6'></span>
-									<span class='path7'></span>
-									<span class='path8'></span>
-									<span class='path9'></span>
-									<span class='path10'></span>
+								<i className='ki-duotone ki-night-day theme-light-show fs-1'>
+									<span className='path1'></span>
+									<span className='path2'></span>
+									<span className='path3'></span>
+									<span className='path4'></span>
+									<span className='path5'></span>
+									<span className='path6'></span>
+									<span className='path7'></span>
+									<span className='path8'></span>
+									<span className='path9'></span>
+									<span className='path10'></span>
 								</i>
-								<i class='ki-duotone ki-moon theme-dark-show fs-1'>
-									<span class='path1'></span>
-									<span class='path2'></span>
+								<i className='ki-duotone ki-moon theme-dark-show fs-1'>
+									<span className='path1'></span>
+									<span className='path2'></span>
 								</i>
 							</button>
 							<div
-								class='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px'
+								className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-gray-500 menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px'
 								data-kt-menu='true'
 								data-kt-element='theme-mode-menu'
 							>
-								<div class='menu-item px-3 my-0'>
+								<div className='menu-item px-3 my-0'>
 									<a
 										href='{()=>false}'
-										class='menu-link px-3 py-2 active'
+										className='menu-link px-3 py-2 active'
 										data-kt-element='mode'
 										data-kt-value='light'
 									>
-										<span class='menu-icon' data-kt-element='icon'>
-											<i class='ki-duotone ki-night-day fs-2'>
-												<span class='path1'></span>
-												<span class='path2'></span>
-												<span class='path3'></span>
-												<span class='path4'></span>
-												<span class='path5'></span>
-												<span class='path6'></span>
-												<span class='path7'></span>
-												<span class='path8'></span>
-												<span class='path9'></span>
-												<span class='path10'></span>
+										<span className='menu-icon' data-kt-element='icon'>
+											<i className='ki-duotone ki-night-day fs-2'>
+												<span className='path1'></span>
+												<span className='path2'></span>
+												<span className='path3'></span>
+												<span className='path4'></span>
+												<span className='path5'></span>
+												<span className='path6'></span>
+												<span className='path7'></span>
+												<span className='path8'></span>
+												<span className='path9'></span>
+												<span className='path10'></span>
 											</i>
 										</span>
-										<span class='menu-title'>Light</span>
+										<span className='menu-title'>Light</span>
 									</a>
 								</div>
-								<div class='menu-item px-3 my-0'>
+								<div className='menu-item px-3 my-0'>
 									<a
 										href='{()=>false}'
-										class='menu-link px-3 py-2'
+										className='menu-link px-3 py-2'
 										data-kt-element='mode'
 										data-kt-value='dark'
 									>
-										<span class='menu-icon' data-kt-element='icon'>
-											<i class='ki-duotone ki-moon fs-2'>
-												<span class='path1'></span>
-												<span class='path2'></span>
+										<span className='menu-icon' data-kt-element='icon'>
+											<i className='ki-duotone ki-moon fs-2'>
+												<span className='path1'></span>
+												<span className='path2'></span>
 											</i>
 										</span>
-										<span class='menu-title'>Dark</span>
+										<span className='menu-title'>Dark</span>
 									</a>
 								</div>
 							</div>
 						</div>
-						<div class='d-flex me-5 me-lg-20'>
-							<button class='btn btn-sm btn-dark me-lg-5' onClick={onLogOutClick}>
+						<div className='d-flex me-5 me-lg-20'>
+							<button className='btn btn-sm btn-dark me-lg-5' onClick={onLogOutClick}>
 								Log out
 							</button>
 						</div>
